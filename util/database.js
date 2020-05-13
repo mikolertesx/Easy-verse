@@ -2,11 +2,6 @@ const settings = require('./settings');
 const mongoose = require('mongoose');
 const verse = require('../models/verse');
 
-verse.create({
-  author: 'Me',
-  content: 'Something something'
-});
-
 if (settings.STAGE === 'development') {
   console.log('DATABASE:', settings.DATABASE_URL);
 }

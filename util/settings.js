@@ -1,5 +1,5 @@
-console.log('ENTORNO', process.env);
 console.log('Fase', process.env.NODE_ENV);
+
 module.exports.PORT = process.env.PORT || 3000;
 module.exports.SECRET = process.env.SECRET || 'JUST-MONIKA';
 module.exports.STAGE = process.env.NODE_ENV || 'development';
