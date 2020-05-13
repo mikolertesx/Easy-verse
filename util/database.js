@@ -8,7 +8,7 @@ verse.create({
 });
 
 if (settings.STAGE === 'development') {
-  console.log(settings.DATABASE_URL);
+  console.log('DATABASE:', settings.DATABASE_URL);
 }
 
 module.exports.connectDatabase = () => {
