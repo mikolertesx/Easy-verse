@@ -1,0 +1,20 @@
+{
+  "name": "reflexion-diaria",
+  "version": "1.0.0",
+  "description": "Una pequeña página para conseguir reflexiones biblicas o escribirlas.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Miguel Angel Guerrero Salinas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
