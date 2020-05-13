@@ -1,11 +1,12 @@
 const express = require('express');
 const settings = require('./util/settings');
+const db = require('./util/database');
 const app = express();
-
-console.log('Database', settings.DATABASE_URL, 'PORT', settings.PORT)
-
 //TODO Add a database setup.
 //TODO Add a bundler.
 //TODO Add a different
 
-app.listen(settings.Port);
+db.connectDatabase()
+  .then(() => {
+    app.listen(settings.Port);
+  })
