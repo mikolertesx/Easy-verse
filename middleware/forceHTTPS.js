@@ -5,7 +5,7 @@ console.log(forceHTTPS ? 'Forzando HTTPS': 'No se esta forzando HTTPS');
 
 // If the page is on production it will force HTTPS.
 Router.use((req, res, next) => {
-  if (forceHTTPS) {
+  if (forceHTTPS && req.get('x-forwarded-proto') !== 'https') {
     return res.redirect('https://' + req.get('host') + req.url);
   }
   return next();
