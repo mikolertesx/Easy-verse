@@ -7,7 +7,8 @@ html(lang="en")
     script(src="/js/app.js")
   body
     if (verse === undefined)
-      h1 Entra más tarde.
+      h1 Entra más tarde o agrega tu el primer versiculo.
+      a(href="/add") Agrega el primer versiculo.
     else
       p Esta pagina esta en construcción.
       p Id de la reflexion: #{verse._id}
