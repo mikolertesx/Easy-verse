@@ -12,6 +12,7 @@ const browserify = require('./middleware/browserify');
 //TODO Add a database setup.
 //TODO Add a different
 
+app.use(forceHTTPS);
 app.use(browserify);
 const mainRoutes = require('./routes/base');
 const editRoutes = require('./routes/simpleEdit');

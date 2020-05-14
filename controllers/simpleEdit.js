@@ -1,3 +1,4 @@
+// Edit used for simple work
 const verses = require('../models/verse');
 
 module.exports.getAdd = (async (req, res, next) => {
