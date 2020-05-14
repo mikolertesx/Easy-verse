@@ -7,7 +7,12 @@ html(lang="en")
   body
     form(action="/add", method="POST")
       p
+        label(for="author") Autor
+      p
         input(type="text", name="author")
       p
+        label(for="content") Reflexion
+      p
+        
         textarea(name="content", cols="30", rows="10")
-      button(type="submit") Enviar
+      button(type="submit") Agregar
