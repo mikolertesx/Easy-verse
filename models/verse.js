@@ -8,7 +8,4 @@ const verseSchema = new Schema({
 })
 
 const verseModel = mongoose.model('Verse', verseSchema);
-
-// clear(verseModel);
-
 module.exports = verseModel;

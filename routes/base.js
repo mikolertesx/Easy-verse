@@ -1,12 +1,8 @@
 const router = require('express').Router
-const verse = require('../models/verse');
+const controller = require('../controllers/base');
 
 const Router = router();
 
-Router.get('/', async (req, res, next) => {
-  console.log('Someone here');
-  const verses = await verse.find();
-  res.send(verses);
-});
+Router.get('/', controller.getIndex);
 
 module.exports = Router;
