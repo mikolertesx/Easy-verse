@@ -6,7 +6,10 @@ html(lang="en")
     title Reflexión diaria.
     script(src="/js/app.js")
   body
-    p Esta pagina esta en construcción.
-    p Id de la reflexion: #{verse._id}
-    p Id del autor: #{verse.author}
-    p Id contenido: #{verse.content}
+    if (verse === undefined)
+      h1 Entra más tarde.
+    else
+      p Esta pagina esta en construcción.
+      p Id de la reflexion: #{verse._id}
+      p Id del autor: #{verse.author}
+      p #{verse.content}
