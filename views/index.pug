@@ -13,6 +13,9 @@ html(lang="en")
       p Esta pagina esta en construcción.
       p Id de la reflexion: #{verse._id}
       p Id del autor: #{verse.author}
+
+      h2 Reflexión.
+      hr
       for paragraph in contents
         p #{paragraph}
       a(href="/add") Agrega tu propia reflexión.
