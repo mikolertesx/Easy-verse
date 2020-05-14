@@ -18,9 +18,6 @@ const mainRoutes = require('./routes/base');
 const editRoutes = require('./routes/simpleEdit');
 
 app.use(express.static('public'))
-
-
-app.use(bodyParser({extended: false}))
 app.use(mainRoutes);
 app.use(editRoutes);
 
