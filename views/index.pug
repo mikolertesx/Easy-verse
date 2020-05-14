@@ -13,4 +13,5 @@ html(lang="en")
       p Esta pagina esta en construcción.
       p Id de la reflexion: #{verse._id}
       p Id del autor: #{verse.author}
-      p #{verse.content}
+      for paragraph in contents
+        p #{paragraph}

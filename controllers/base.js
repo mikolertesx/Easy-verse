@@ -5,7 +5,9 @@ module.exports.getIndex = (async (req, res, next) => {
     { $sample: {size: 1} }
   ]);
   const filteredVerse = randomVerse[0];
+  const splitMessage = filteredVerse.content.split('\n');
   return res.render('index', {
-    verse: filteredVerse
+    verse: filteredVerse,
+    contents: splitMessage
   });
 })
