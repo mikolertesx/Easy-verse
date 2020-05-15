@@ -21,6 +21,11 @@ app.use(handleSession);
 app.use(mainRoutes);
 app.use(editRoutes);
 
+// 404 page.
+app.use((req, res, next)=> {
+  res.render('404');
+})
+
 db.connectDatabase()
   .then(() => {
     app.listen(settings.PORT);
