@@ -1,30 +1,25 @@
 const verses = require('../models/verse');
-const userUtilities = require('../util/userUtilities');
+const userUtilities = require('../util/user');
 
 module.exports.getIndex = (async (req, res, next) => {
   const user = req.cookies['user'];
-
-  let attempts = 3;
+  let attempts = 100;
   let randomVerse;
-  let filteredVerse;
+
+  // Try to get a not-seen reflection.
   do {
-    randomVerse = await verses.aggregate([
-      { $sample: { size: 1 } }
-    ]);
-    filteredVerse = randomVerse[0];
-    if (!userUtilities.isIn(user, filteredVerse)) {break;}
+    randomVerse = await verses.findRandom()
+    if (!userUtilities.isIn(user, randomVerse)) { break; }
     attempts -= 1;
   } while (attempts > 0);
 
-  // It returns an array, this just gets the only one item inside.
-
   if (user) {
-    res.cookie('user', userUtilities.updateSeen(user, filteredVerse));
+    res.cookie('user', userUtilities.updateWatchedList(user, randomVerse));
   }
 
-  const splitMessage = filteredVerse.content.split('\n');
+  const splitMessage = randomVerse.content.split('\n');
+  randomVerse.parsedMessage = splitMessage;
   return res.render('index', {
-    verse: filteredVerse,
-    contents: splitMessage
+    verse: randomVerse
   });
 })

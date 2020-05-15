@@ -13,7 +13,7 @@ const handleSession = require('./middleware/handleSession');
 //TODO Add a different
 
 const mainRoutes = require('./routes/base');
-const editRoutes = require('./routes/simpleEdit');
+const editRoutes = require('./routes/edit');
 
 app.use(forceHTTPS);
 app.use(browserify);

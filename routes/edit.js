@@ -1,6 +1,6 @@
 // To be replaced with a complete one, used for debug.
 const router = require('express').Router
-const controller = require('../controllers/simpleEdit');
+const controller = require('../controllers/edit');
 const bodyParser = require('../util/shared').urlEncodedParser;
 
 const Router = router();

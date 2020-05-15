@@ -12,3 +12,11 @@ module.exports.connectDatabase = () => {
     useUnifiedTopology: true
   })
 }
+
+module.exports.clearCollection = (model, log = true) => {
+  if (settings.STAGE === 'development') {
+    if (log) { console.log(`Restarting ${model.modelName}`) }
+    return model.deleteMany({})
+  }
+  return;
+}
