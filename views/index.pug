@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Reflexión diaria.
-  body
-    if (verse === undefined)
-      h1 Entra más tarde o agrega tu el primer versiculo.
-      a(href="/add") Agrega el primer versiculo.
-    else
-      p Esta pagina esta en construcción.
-      p Id de la reflexion: #{verse._id}
-      p Id del autor: #{verse.author}
-
-      h2 Reflexión.
-      hr
-      for paragraph in verse.parsedMessage
-        p #{paragraph}
-      a(href="/add") Agrega tu propia reflexión.
+extends utils/base.pug
+block content
+  if (verse === undefined)
+    h1 Entra más tarde o agrega tu el primer versiculo.
+    a(href="/add") Agrega el primer versiculo.
+  else
+    h2 Reflexión.
+    hr
+    for paragraph in verse.parsedMessage
+      p #{paragraph}
+    hr
+    p Esta pagina esta en construcción.
+    p Id de la reflexion: #{verse._id}
+    p Id del autor: #{verse.author}
+    a(href="/add") Agrega tu propia reflexión.

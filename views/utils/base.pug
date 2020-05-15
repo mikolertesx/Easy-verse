@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    if title
+      title Reflexión diaria - #{title}
+    else
+      title Reflexión diaria
+
+    link(rel="stylesheet", href="/css/main.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap")
+  body
+    aside
+      div#sidebar-image
+        img.header-image(src="img/logo.png", alt="...")
+      h2#sidebar-title Un proyecto de Jehova Jireh
+      div#sidebar-links
+        ul.links
+          li: div.link
+            a(href="/") Inicio
+          li: div.link
+            a(href="/") Acerca de
+          li: div.link
+            a(href="/") Metas
+      a#contribute(href="/add") Contribuir
+
+    main
+      block content

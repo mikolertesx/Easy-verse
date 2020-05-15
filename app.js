@@ -9,9 +9,6 @@ const forceHTTPS = require('./middleware/forceHTTPS');
 const browserify = require('./middleware/browserify');
 const handleSession = require('./middleware/handleSession');
 
-//TODO Add a database setup.
-//TODO Add a different
-
 const mainRoutes = require('./routes/base');
 const editRoutes = require('./routes/edit');
 
