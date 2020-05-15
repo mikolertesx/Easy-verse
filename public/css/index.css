@@ -30,6 +30,24 @@ div.reflection p {
   margin: 24px 0;
 }
 
+button {
+  width: 100%;
+  margin-bottom: 1vh;
+  margin-top: auto;
+  display: block;
+  height: 10vh;
+  background: var(--darkbackground);
+  color: var(--maintext);
+  font-size: 1.5rem;
+  border: 1px solid var(--darkbackground);
+  transition: all 0.3s;
+}
+
+button:hover {
+  color: var(--darkbackground);
+  background: var(--maintext);
+}
+
 @media(max-width:800px) {
   div.info {
     flex-direction: column;

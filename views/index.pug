@@ -15,5 +15,5 @@ block content
     div.reflection
       for paragraph in verse.parsedMessage
         p #{paragraph}
-      a.in-mobile(href="/add") Contribuir
+      button.in-mobile(href="/add") Contribuir
     input(type="hidden", name="reflectionId", value=verse._id)
