@@ -1,0 +1,61 @@
+form {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+label,
+textarea,
+input[type="text"],
+button {
+  display: block;
+  margin: auto;
+  width: 95%;
+}
+
+textarea,
+input[type="text"] {
+  border-radius: 3px;
+  border: 1px solid gray;
+  padding: 12px;
+  transition: all 0.1s;
+}
+
+textarea:focus,
+input[type="text"]:focus {
+  border: 3px solid var(--accent);
+}
+
+input[type="text"] {
+  height: 5vh;
+}
+
+textarea {
+  resize: none;
+  height: 65vh;
+}
+
+button {
+  margin-bottom: 1vh;
+  margin-top: auto;
+  display: block;
+  height: 10vh;
+  background: var(--darkbackground);
+  color: var(--maintext);
+  font-size: 1.5rem;
+  border: 1px solid var(--darkbackground);
+  transition: all 0.3s;
+}
+
+button:hover {
+  color: var(--darkbackground);
+  background: var(--maintext);
+}
+
+.control {
+  margin-bottom: 12px;
+}
+
+.control:first-of-type {
+  margin-top: 12px;
+}

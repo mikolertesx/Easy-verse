@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Agregar documento.
-  body
-    form(action="/add", method="POST")
-      p
-        label(for="author") Autor
-      p
-        input(type="text", name="author")
-      p
-        label(for="content") Reflexion
-      p
-        
-        textarea(name="content", cols="30", rows="10")
-      button(type="submit") Agregar
+extends utils/base.pug
+block css
+  link(rel="stylesheet", href="css/edit.css")
+
+block content
+  form(action="/add", method="POST")
+    .control
+      label(for="author") Autor
+      input(type="text", name="author")
+    .control
+      label(for="content") Reflexion
+      textarea(name="content", cols="30", rows="10")
+    button(type="submit") Agregar

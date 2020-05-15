@@ -14,7 +14,8 @@ module.exports.getIndex = (async (req, res, next) => {
   } while (attempts > 0);
 
   if (user) {
-    res.cookie('user', userUtilities.updateWatchedList(user, randomVerse));
+    res.cookie('user', userUtilities.updateWatchedList(user, randomVerse),
+      { sameSite: 'Lax' }); // Avoids deprecation.
   }
 
   const splitMessage = randomVerse.content.split('\n');
