@@ -1,15 +1,19 @@
 extends utils/base.pug
+block css
+  link(rel="stylesheet", href="css/index.css")
 block content
   if (verse === undefined)
     h1 Entra más tarde o agrega tu el primer versiculo.
     a(href="/add") Agrega el primer versiculo.
   else
-    h2 Reflexión.
-    hr
-    for paragraph in verse.parsedMessage
-      p #{paragraph}
-    hr
-    p Esta pagina esta en construcción.
-    p Id de la reflexion: #{verse._id}
-    p Id del autor: #{verse.author}
-    a(href="/add") Agrega tu propia reflexión.
+    div.info
+      h2 Reflexión.
+      p
+        span.not-mobile escrita por
+        |  #{verse.author}
+
+    div.reflection
+      for paragraph in verse.parsedMessage
+        p #{paragraph}
+      a.in-mobile(href="/add") Contribuir
+    input(type="hidden", name="reflectionId", value=verse._id)

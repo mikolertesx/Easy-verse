@@ -3,6 +3,7 @@
   --darkbackground: #222222;
   --lightbackground: #F4F4F8;
   --maintext: #F4F4F8;
+  --accent: #102542;
 }
 
 * {
@@ -87,7 +88,7 @@ aside {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2vh 12px;
+  margin: 0;
   margin-top: auto;
   height: 12vh;
   background: rgba(0, 0, 0, .4);
@@ -110,4 +111,27 @@ aside {
 main {
   width: 80vw;
   margin-left: 20vw;
+}
+
+.in-mobile {
+  display: none;
+}
+
+/* Adaptar al movil. */
+@media(max-width: 800px) {
+  aside {
+    display: none;
+  }
+  main {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .not-mobile {
+    display: none;
+  }
+
+  .in-mobile {
+    display: initial;
+  }
 }
