@@ -15,6 +15,7 @@
 
 body {
   background: var(--lightbackground);
+  overflow: hidden;
 }
 
 aside {
