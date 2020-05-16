@@ -2,14 +2,29 @@ const jwt = require('jsonwebtoken');
 const settings = require('./settings');
 const verses = require('../models/verse');
 
+module.exports.createUser = () => {
+  return user = {
+    'connected': true,
+    'aware': false,
+    'seen': []
+  }
+};
+
 module.exports.decryptUser = (user) => {
   const decodedUser = jwt.decode(user, settings.SECRET);
   return decodedUser;
 }
 
 module.exports.updateWatchedList = (user, filteredVerse) => {
-  const decodedUser = this.decryptUser(user);
-  const newSeen = new Set([...decodedUser.seen]);
+  let decodedUser;
+  let newSeen;
+  if (!user) {
+    decodedUser = this.createUser();
+    newSeen = new Set([]);
+  } else {
+    decodedUser = this.decryptUser(user);
+    newSeen = new Set([...decodedUser.seen]);
+  }
   newSeen.add(filteredVerse._id.toString());
   decodedUser.seen = Array.from(newSeen);
   const signedUser = jwt.sign(decodedUser, settings.SECRET)
