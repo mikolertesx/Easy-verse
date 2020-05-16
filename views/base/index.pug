@@ -19,3 +19,9 @@ block content
         p #{paragraph}
       a.contribute.in-mobile(href="/add") Contribuir
     input(type="hidden", name="reflectionId", value=verse._id)
+
+    div.vote
+      p Danos tu opinion.
+      div.votes
+        img#voteup(src="img/votes/dislike.png", alt="")
+        img#votedown(src="img/votes/like.png", alt="")

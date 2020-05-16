@@ -63,6 +63,52 @@ div.reflection p:last-of-type {
   background: var(--maintext);
 }
 
+.vote {
+  width: 80%;
+  max-width: 800px;
+  margin: 100px auto;
+}
+
+.vote p {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.votes {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.votes img {
+  width: 40%;
+  max-width: 300px;
+  cursor: pointer;
+  background: transparent;
+  padding: 12px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+
+#voteup {
+  background: #2e2e2e;
+}
+
+#votedown {
+  background: #2e2e2e;
+}
+
+#voteup:hover,
+#voteup.active {
+  background: #129946;
+}
+
+#votedown:hover,
+#voteup.active {
+  background: #810b0b;
+}
+
 @media(max-width:800px) {
   div.info {
     flex-direction: column;

@@ -43,11 +43,12 @@ module.exports.getIndex = (async (req, res, next) => {
   let randomVerse;
 
   randomVerse = await findNewVerse(user);
-
   res.cookie('user', userUtilities.updateWatchedList(user, randomVerse),
-    { sameSite: 'Lax' }); // Avoids cookie deprecation.
-
-  await verses.updateOne({ _id: randomVerse._id }, { $inc: { 'seen': 1 } });
+  { sameSite: 'Lax' }); // Avoids cookie deprecation.
+  
+  if (!userUtilities.isIn(user, randomVerse)){
+    await verses.updateOne({ _id: randomVerse._id }, { $inc: { 'seen': 1 } });
+  }
 
   const splitMessage = randomVerse.content.split('\n');
   randomVerse.parsedMessage = splitMessage;
