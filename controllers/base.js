@@ -10,7 +10,8 @@ module.exports.getIndex = (async (req, res, next) => {
   // Try to get a not-seen reflection.
   do {
     randomVerse = await verses.findRandom()
-    if (!userUtilities.isIn(user, randomVerse)) { break; }
+    if (!userUtilities.isIn(user, randomVerse) ||
+        userUtilities.userReadAll(user)) { break; }
     attempts -= 1;
   } while (attempts > 0);
 
@@ -18,6 +19,8 @@ module.exports.getIndex = (async (req, res, next) => {
     res.cookie('user', userUtilities.updateWatchedList(user, randomVerse),
       { sameSite: 'Lax' }); // Avoids deprecation.
   }
+
+  await verses.updateOne({_id: randomVerse._id}, {$inc: {'seen': 1}});
 
   const splitMessage = randomVerse.content.split('\n');
   randomVerse.parsedMessage = splitMessage;

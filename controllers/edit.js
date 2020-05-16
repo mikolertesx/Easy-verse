@@ -14,7 +14,12 @@ module.exports.postAdd = (async (req, res, next) => {
 
   await verses.create({
     author,
-    content
+    content,
+    votes: {
+      likes: 0,
+      dislikes: 0
+    },
+    seen: 0
   });
   console.log(req.body);
   return res.redirect('/');

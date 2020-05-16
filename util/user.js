@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const settings = require('./settings');
+const verses = require('../models/verse');
 
 module.exports.decryptUser = (user) => {
   const decodedUser = jwt.decode(user, settings.SECRET);
@@ -16,8 +17,17 @@ module.exports.updateWatchedList = (user, filteredVerse) => {
 }
 
 module.exports.isIn = (user, filteredVerse) => {
-  if (!user) {return false;}
+  if (!user) { return false; }
   const decodedUser = this.decryptUser(user);
   const verse = filteredVerse._id.toString();
   return decodedUser.seen.includes(verse);
+}
+
+module.exports.userReadAll = async (user) => {
+  const allDocuments = await verses.countDocuments()
+  const lengthUser = this.decryptUser(user).seen.length;
+  if (allDocuments <= lengthUser) { 
+    return true; 
+  }
+  return false;
 }

@@ -6,11 +6,13 @@ block content
     h1 Entra más tarde o agrega tu el primer versiculo.
     a(href="/add") Agrega el primer versiculo.
   else
-    div.info
-      h2 Reflexión.
-      p
-        span.not-mobile escrita por
-        |  #{verse.author}
+    div.header
+      div.info
+        h2 Reflexión.
+        p
+          span.not-mobile escrita por
+          |  #{verse.author}
+      p.seen Esta página ha sido vista #{verse.seen} veces.
 
     div.reflection
       for paragraph in verse.parsedMessage

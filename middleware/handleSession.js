@@ -18,10 +18,7 @@ Router.use(async (req, res, next) => {
   if (!user || user === 'undefined') {
     user = createUser();
     const signedToken = jwt.sign(user, settings.SECRET);
-    console.log(signedToken);
     res.cookie('user', signedToken);
-  } else {
-    const decodedToken = jwt.decode(user, settings.SECRET);
   }
   return next();
 })

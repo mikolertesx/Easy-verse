@@ -4,8 +4,13 @@ const Schema = mongoose.Schema;
 
 const verseSchema = new Schema({
   author: String,
-  content: String
-})
+  content: String,
+  votes: {
+    likes: Number,
+    dislikes: Number
+  },
+  seen: 0
+});
 
 verseSchema.static('findRandom', async function(){
   const randomObject = await this.aggregate([
