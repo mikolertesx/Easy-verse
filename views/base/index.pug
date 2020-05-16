@@ -1,6 +1,8 @@
 extends ../utils/base.pug
 block css
   link(rel="stylesheet", href="css/base/index.css")
+block js
+  script(src="js/base/index.js" defer)
 block content
   if (verse === undefined)
     h1 Entra más tarde o agrega tu el primer versiculo.
