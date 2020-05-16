@@ -10,6 +10,7 @@ module.exports.connectDatabase = async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
+  console.log('Conexion a base de datos verificada.');
 
   return mongoose.connection.on('connected', () => {
     return true;
