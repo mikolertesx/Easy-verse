@@ -22,6 +22,11 @@ block content
       a.contribute.in-mobile(href="/add") Contribuir
     input(type="hidden", name="reflectionId", value=verse._id)
 
+    template#voteresults
+      div.votenumbers
+        p#positiveVotes(style="color: green;") Votos positivos.
+        p#negativeVotes(style="color: red;") Votos negativos.
+
     div.vote
       p Danos tu opinion.
       div.votes

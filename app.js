@@ -11,6 +11,7 @@ const handleSession = require('./middleware/handleSession');
 
 const mainRoutes = require('./routes/base');
 const editRoutes = require('./routes/edit');
+const votesRoutes = require('./routes/votes');
 
 app.use(forceHTTPS);
 app.use(browserify);
@@ -20,6 +21,7 @@ app.use(handleSession);
 
 app.use(mainRoutes);
 app.use(editRoutes);
+app.use('/votes', votesRoutes);
 
 // 404 page.
 app.use((req, res, next)=> {

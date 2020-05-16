@@ -109,6 +109,16 @@ div.reflection p:last-of-type {
   background: #810b0b;
 }
 
+div.votenumbers {
+  margin: 12px;
+  background: #b1b1b1;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 @media(max-width:800px) {
   div.info {
     flex-direction: column;
