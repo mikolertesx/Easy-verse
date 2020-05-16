@@ -1,9 +1,10 @@
 const verses = require('../models/verse');
 const userUtilities = require('../util/user');
+const settings = require('../util/settings');
 
 module.exports.getIndex = (async (req, res, next) => {
   const user = req.cookies['user'];
-  let attempts = 100;
+  let attempts = settings.READATTEMPTS;
   let randomVerse;
 
   // Try to get a not-seen reflection.
