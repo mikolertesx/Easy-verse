@@ -1,6 +1,6 @@
-extends utils/base.pug
+extends ../utils/base.pug
 block css
-  link(rel="stylesheet", href="css/index.css")
+  link(rel="stylesheet", href="css/base/index.css")
 block content
   if (verse === undefined)
     h1 Entra más tarde o agrega tu el primer versiculo.
@@ -15,5 +15,5 @@ block content
     div.reflection
       for paragraph in verse.parsedMessage
         p #{paragraph}
-      button.in-mobile(href="/add") Contribuir
+      a.contribute.in-mobile(href="/add") Contribuir
     input(type="hidden", name="reflectionId", value=verse._id)

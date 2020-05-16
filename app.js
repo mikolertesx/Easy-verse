@@ -23,10 +23,17 @@ app.use(editRoutes);
 
 // 404 page.
 app.use((req, res, next)=> {
-  res.render('404');
+  res.render('base/404');
 })
 
 db.connectDatabase()
   .then(() => {
     app.listen(settings.PORT);
+  })
+  .catch(() => {
+    if (settings.STAGE === 'development') {
+      console.log('Asegurate de estar corriendo un servidor de desarrollo.');
+    } else {
+      console.log('No se logra establecer acceso a la base de datos.');
+    }
   })

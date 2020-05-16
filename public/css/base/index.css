@@ -30,20 +30,27 @@ div.reflection p {
   margin: 24px 0;
 }
 
-button {
+div.reflection p:last-of-type {
+  margin-bottom: 50px 0;
+}
+
+.contribute {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 10vh;
   margin-bottom: 1vh;
   margin-top: auto;
-  display: block;
-  height: 10vh;
+  text-decoration: none;
   background: var(--darkbackground);
   color: var(--maintext);
   font-size: 1.5rem;
-  border: 1px solid var(--darkbackground);
   transition: all 0.3s;
+  border: 1px solid var(--darkbackground);
 }
 
-button:hover {
+.contribute:hover {
   color: var(--darkbackground);
   background: var(--maintext);
 }

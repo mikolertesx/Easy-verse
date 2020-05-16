@@ -20,7 +20,7 @@ module.exports.getIndex = (async (req, res, next) => {
 
   const splitMessage = randomVerse.content.split('\n');
   randomVerse.parsedMessage = splitMessage;
-  return res.render('index', {
+  return res.render('base/index', {
     verse: randomVerse
   });
 })
