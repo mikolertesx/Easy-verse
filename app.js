@@ -32,7 +32,7 @@ db.connectDatabase()
   })
   .catch(() => {
     if (settings.STAGE === 'development') {
-      console.log('Asegurate de estar corriendo un servidor de desarrollo.');
+      console.log('Parece que no hay una base de datos corriendo. Asegurate de utilizar Mongo.');
     } else {
       console.log('No se logra establecer acceso a la base de datos.');
     }
