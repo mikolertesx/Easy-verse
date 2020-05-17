@@ -83,6 +83,7 @@ div.reflection p:last-of-type {
 
 .votes img {
   width: 40%;
+  height: auto;
   max-width: 300px;
   cursor: pointer;
   background: transparent;
