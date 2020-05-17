@@ -90,6 +90,7 @@ div.reflection p:last-of-type {
   padding: 12px;
   border-radius: 15px;
   transition: all 0.3s;
+  object-fit: cover;
 }
 
 #voteup {
