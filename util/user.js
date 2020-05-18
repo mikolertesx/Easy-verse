@@ -16,6 +16,7 @@ module.exports.saveUser = (req, res) => {
   if (!user) {
     throw new Error('User is not in the request object.');
   }
+  console.log(user);
   const encryptedUser = jwt.sign(user, settings.SECRET);
   res.cookie('user', encryptedUser);
 }
@@ -26,6 +27,7 @@ module.exports.decryptUser = (user) => {
 }
 
 module.exports.updateWatchedList = (user, filteredVerse) => {
+  const verseId = filteredVerse._id.toString();
   let newSeen;
   if (!user) {
     user = this.createUser();
@@ -33,8 +35,9 @@ module.exports.updateWatchedList = (user, filteredVerse) => {
   } else {
     newSeen = new Set([...user.seen]);
   }
-  newSeen.add(filteredVerse._id.toString());
+  newSeen.add(verseId);
   user.seen = Array.from(newSeen);
+  user.lastSeen = verseId;
   return user;
 }
 

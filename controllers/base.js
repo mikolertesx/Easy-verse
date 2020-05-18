@@ -15,7 +15,8 @@ const findNewVerse = async (user) => {
     const seenLength = user.seen.length;
     const documentLength = await verses.countDocuments();
     if (seenLength >= documentLength) {
-      seenList = [];
+      const lastSeen = user.lastSeen;
+      seenList = lastSeen ? [lastSeen] : [];
     } else {
       seenList = user.seen;
     }
@@ -47,8 +48,6 @@ module.exports.getIndex = (async (req, res, next) => {
   }
 
   userUtilities.saveUser(req, res);
-
-  console.log(user);
 
   const splitMessage = randomVerse.content.split('\n');
   randomVerse.parsedMessage = splitMessage;
