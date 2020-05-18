@@ -7,7 +7,6 @@ module.exports.getVotes = async (req, res, next) => {
   res.json(votes);
 }
 
-
 module.exports.upVote = async(req, res, next) => {
   const id = req.body.id;
   const verse = await verses.findById(id);

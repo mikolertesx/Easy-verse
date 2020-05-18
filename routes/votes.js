@@ -8,5 +8,4 @@ Router.get('/getVotes/:id', controller.getVotes);
 Router.post('/upvote', jsonParser, controller.upVote);
 Router.post('/downvote', jsonParser, controller.downVote);
 
-
 module.exports = Router;
