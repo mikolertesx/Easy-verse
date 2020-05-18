@@ -35,6 +35,6 @@ db.connectDatabase()
     if (settings.STAGE === 'development') {
       console.log('Parece que no hay una base de datos corriendo. Asegurate de utilizar Mongo.');
     } else {
-      console.log('No se logra establecer acceso a la base de datos.');
+      console.log(`No se logra establecer acceso a la base de datos. ${settings.DATABASE_URL}`);
     }
   })

@@ -6,15 +6,16 @@ if (settings.STAGE === 'development') {
 }
 
 module.exports.connectDatabase = async () => {
-  await mongoose.connect(settings.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
-  console.log('Conexion a base de datos verificada.');
-
-  return mongoose.connection.on('connected', () => {
-    return true;
-  })
+  try {
+    return await mongoose.connect(settings.DATABASE_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: settings.DATABASE_TIMEOUT
+    });
+  } 
+  catch (err) {
+    throw new Error(err);
+  }
 }
 
 module.exports.clearCollection = (model, log = true) => {
