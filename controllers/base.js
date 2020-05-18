@@ -1,13 +1,5 @@
-const mongoose = require('mongoose');
 const verses = require('../models/verse');
 const userUtilities = require('../util/user');
-
-const fromStringToIds = (stringArray) => {
-  const newArray = stringArray.map((stringId) => {
-    return mongoose.Types.ObjectId(stringId);
-  })
-  return newArray;
-}
 
 const findNewVerse = async (user) => {
   let seenList;
@@ -23,17 +15,7 @@ const findNewVerse = async (user) => {
   } else {
     seenList = [];
   }
-
-  const parsedList = fromStringToIds(seenList);
-
-  const newUnparsedVerse = await verses.aggregate([
-    { $match: { _id: { $nin: parsedList } } },
-    { $sample: { size: 1 } }
-  ]);
-
-  const parsedVerse = newUnparsedVerse[0];
-
-  return parsedVerse;
+  return verses.findNewVerse(seenList);
 }
 
 module.exports.getIndex = (async (req, res, next) => {
@@ -51,7 +33,7 @@ module.exports.getIndex = (async (req, res, next) => {
 
   const splitMessage = randomVerse.content.split('\n');
   randomVerse.parsedMessage = splitMessage;
-  return res.render('base/index', {
+  return res.render('main/index', {
     verse: randomVerse
   });
 })

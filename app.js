@@ -24,7 +24,7 @@ app.use('/votes', votesRoutes);
 
 // 404 page.
 app.use((req, res, next)=> {
-  res.render('base/404');
+  res.render('utils/404');
 })
 
 db.connectDatabase()

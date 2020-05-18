@@ -4,11 +4,10 @@ const verses = require('../models/verse');
 
 module.exports.createUser = () => {
   return user = {
-    'connected': true,
-    'aware': false,
     'seen': [],
-    'moderator': false
-  }
+    'moderator': false,
+    'voted': []
+  };
 };
 
 module.exports.saveUser = (req, res) => {
