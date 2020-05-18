@@ -10,17 +10,14 @@ const fromStringToIds = (stringArray) => {
 }
 
 const findNewVerse = async (user) => {
-  const decryptedUser = userUtilities.decryptUser(user);
-  let seenList; // List of reflections seen by user.
-
-  // If user exists.
-  if (decryptedUser) {
-    const seenLength = decryptedUser.seen.length;
+  let seenList;
+  if (user) {
+    const seenLength = user.seen.length;
     const documentLength = await verses.countDocuments();
     if (seenLength >= documentLength) {
       seenList = [];
     } else {
-      seenList = decryptedUser.seen;
+      seenList = user.seen;
     }
   } else {
     seenList = [];
@@ -39,16 +36,19 @@ const findNewVerse = async (user) => {
 }
 
 module.exports.getIndex = (async (req, res, next) => {
-  const user = req.cookies['user'];
+  const user = req.user;
   let randomVerse;
 
   randomVerse = await findNewVerse(user);
-  res.cookie('user', userUtilities.updateWatchedList(user, randomVerse),
-  { sameSite: 'Lax' }); // Avoids cookie deprecation.
+  req.user = userUtilities.updateWatchedList(user, randomVerse);
   
   if (!userUtilities.isIn(user, randomVerse)){
     await verses.updateOne({ _id: randomVerse._id }, { $inc: { 'seen': 1 } });
   }
+
+  userUtilities.saveUser(req, res);
+
+  console.log(user);
 
   const splitMessage = randomVerse.content.split('\n');
   randomVerse.parsedMessage = splitMessage;

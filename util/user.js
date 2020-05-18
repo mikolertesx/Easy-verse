@@ -6,9 +6,19 @@ module.exports.createUser = () => {
   return user = {
     'connected': true,
     'aware': false,
-    'seen': []
+    'seen': [],
+    'moderator': false
   }
 };
+
+module.exports.saveUser = (req, res) => {
+  const user = req.user;
+  if (!user) {
+    throw new Error('User is not in the request object.');
+  }
+  const encryptedUser = jwt.sign(user, settings.SECRET);
+  res.cookie('user', encryptedUser);
+}
 
 module.exports.decryptUser = (user) => {
   const decodedUser = jwt.decode(user, settings.SECRET);
@@ -16,26 +26,23 @@ module.exports.decryptUser = (user) => {
 }
 
 module.exports.updateWatchedList = (user, filteredVerse) => {
-  let decodedUser;
   let newSeen;
   if (!user) {
-    decodedUser = this.createUser();
+    user = this.createUser();
     newSeen = new Set([]);
   } else {
-    decodedUser = this.decryptUser(user);
-    newSeen = new Set([...decodedUser.seen]);
+    newSeen = new Set([...user.seen]);
   }
   newSeen.add(filteredVerse._id.toString());
-  decodedUser.seen = Array.from(newSeen);
-  const signedUser = jwt.sign(decodedUser, settings.SECRET)
-  return signedUser;
+  user.seen = Array.from(newSeen);
+  return user;
 }
 
 module.exports.isIn = (user, filteredVerse) => {
   if (!user) { return false; }
-  const decodedUser = this.decryptUser(user);
+  // const decodedUser = this.decryptUser(user);
   const verse = filteredVerse._id.toString();
-  return decodedUser.seen.includes(verse);
+  return user.seen.includes(verse);
 }
 
 module.exports.userReadAll = async (user) => {

@@ -7,7 +7,7 @@ app.set('view engine', 'pug');
 
 const forceHTTPS = require('./middleware/forceHTTPS');
 const browserify = require('./middleware/browserify');
-const handleSession = require('./middleware/handleSession');
+const createSession = require('./middleware/createSession');
 
 const mainRoutes = require('./routes/base');
 const editRoutes = require('./routes/edit');
@@ -16,8 +16,7 @@ const votesRoutes = require('./routes/votes');
 app.use(forceHTTPS);
 app.use(browserify);
 app.use(express.static('public'))
-app.use(handleSession);
-
+app.use(createSession);
 
 app.use(mainRoutes);
 app.use(editRoutes);

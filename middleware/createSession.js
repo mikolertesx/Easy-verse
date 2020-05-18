@@ -12,6 +12,9 @@ Router.use(async (req, res, next) => {
     user = userUtilities.createUser();
     const signedToken = jwt.sign(user, settings.SECRET);
     res.cookie('user', signedToken);
+    req.user = user;
+  } else {
+    req.user = userUtilities.decryptUser(user);
   }
   return next();
 })
