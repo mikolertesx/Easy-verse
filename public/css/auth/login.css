@@ -1,0 +1,58 @@
+/* :root {
+  --pureblack: #000000;
+  --darkbackground: #222222;
+  --lightbackground: #F4F4F8;
+  --maintext: #F4F4F8;
+  --accent: #102542;
+} */
+
+form {
+  background: var(--lightbackground);
+  width: 80%;
+  border: 1px solid gray;
+  border-radius: 10px;
+  overflow: hidden;
+  /* height: 60vh; */
+  margin: 10vh auto;
+}
+
+form .form-header {
+  background: #2f42ee;
+  padding: 20px;
+  text-align: center;
+  color: var(--maintext);
+}
+
+.control {
+  margin: 24px;
+}
+
+form .form-submit {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  background: #2f42ee;
+  margin-top: auto;
+  padding: 12px;
+  font-size: 1.25rem;
+  color: white;
+  display: block;
+}
+
+
+input[type=text],
+input[type=password] {
+  display: block;
+  width: 80%;
+  margin: auto;
+  padding: 5px;
+  border-radius: 3px;
+  border-width: 1px;
+  border-color: gray;
+}
+
+label {
+  display: block;
+  width: 80%;
+  margin: auto;
+}

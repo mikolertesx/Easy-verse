@@ -20,6 +20,8 @@ block content
       for paragraph in verse.parsedMessage
         p #{paragraph}
       a.contribute.in-mobile(href="/add") Contribuir
+      if (user.role !== undefined && (user.role === 'Admin' || user.role === 'Moderator'))
+        a.contribute.in-mobile(href="/admin/index") Administrar
     input(type="hidden", name="reflectionId", value=verse._id)
 
     template#voteresults

@@ -1,10 +1,17 @@
 extends ../utils/base.pug
 
+block css
+  link(rel="stylesheet", href="/css/auth/login.css")
+
 block content
   form(action=link method="POST")
     input(type="hidden", name="_csrf" value=csrfToken)
-    label(for="username") Usuario
-    input(type="text" name="username")
-    label(for="password") Contraseña
-    input(type="password" name="password")
-    button(type="submit") #{text}
+    .form-header
+      h1 Acceder
+    .control
+      label(for="username") Usuario
+      input(type="text" name="username")
+    .control
+      label(for="password") Contraseña
+      input(type="password" name="password")
+    button.form-submit(type="submit") #{text}

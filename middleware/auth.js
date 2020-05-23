@@ -1,5 +1,7 @@
 module.exports.isAuth = (req, res, next) => {
-  if (req.session.user) {
+  if (req.session.user && 
+    (req.session.role === 'Admin'
+    || req.session.role === 'Moderator')) {
     return next();
   }
   return res.redirect('/');
