@@ -39,12 +39,15 @@ Router.use(async (req, res, next) => {
     req.user = userUtilities.decryptUser(user);
   }
 
+  res.locals.user = req.user;
+
   if (userSession) {
     const newUserSession = {...userSession, ...req.user};
     const dbUser = await userModel.findOne({_id: newUserSession._id.toString()});
     if (dbUser) {
     await dbUser.addFields(req.user);
     req.session.user = newUserSession;
+    res.locals.user = newUserSession;
     console.log(userSession);
     } else {
       // Data is no longer there.
