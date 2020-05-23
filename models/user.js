@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 //TODO Add hashing.
 const userSchema = new Schema({
-  name: String,
+  username: String,
   password: String,
   role: {
     required: true,
