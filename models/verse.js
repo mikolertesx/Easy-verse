@@ -34,7 +34,6 @@ verseSchema.static('findNewVerse', async function (list) {
     { $match: { _id: { $nin: parsedList } } },
     { $sample: { size: 1 } }
   ]);
-
   const parsedVerse = newUnparsedVerse[0];
 
   return parsedVerse;

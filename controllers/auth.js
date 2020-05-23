@@ -26,11 +26,7 @@ module.exports.postRegister = async (req, res, next) => {
   const length = await userModel.countDocuments();
   const role = length === 0 ? 'Admin' : 'Moderator';
 
-  const newUser = await userModel.create({
-    username,
-    password,
-    role
-  });
+  const newUser = await userModel.createUser(username, password, role);
 
   return res.json({
     'id': newUser._id.toString()
@@ -45,11 +41,8 @@ module.exports.postLogin = async (req, res, next) => {
   const logedUser = await userModel.findOne({username: user})
 
   if (logedUser) {
-    if (logedUser.password === password) {
-      return res.json({'message': 'Success!'});
-    } else {
-      return res.json({'message': 'Wrong password'});
-    }
+    const isLoggedin = await logedUser.login(user, password);
+    return res.json({ 'message': `Logged in is set to ${isLoggedin}` })
   } else {
     return res.json({ 'message': 'User does not exist'});
   }
