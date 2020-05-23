@@ -41,9 +41,9 @@ module.exports.postLogin = async (req, res, next) => {
   console.log(req.body);
   const user = req.body.username;
   const password = req.body.password;
-
   const logedUser = await userModel.findOne({username: user})
   req.session.user = logedUser.toObject();
+  req.user.seen = [...req.user.seen, ...req.session.user.seen];
   if (logedUser) {
     const isLoggedin = await logedUser.login(password);
     return res.json({ 'message': `Logged in is set to ${isLoggedin}` })
