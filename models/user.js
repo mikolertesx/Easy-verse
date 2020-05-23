@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const user = require('../util/user');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
@@ -12,7 +11,6 @@ const userSchema = new Schema({
     type: String
   },
   seen: [],
-  moderator: Boolean,
   voted: [],
   lastSeen: String
 });
@@ -24,9 +22,8 @@ userSchema.static('createUser', async function(user, password, role) {
     password: hashedPassword,
     role: role,
     seen: [],
-    moderator: Boolean,
-    voted: Boolean,
-    lastSeen: String
+    voted: [],
+    lastSeen: ''
   });
 })
 

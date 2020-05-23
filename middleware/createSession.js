@@ -42,9 +42,15 @@ Router.use(async (req, res, next) => {
   if (userSession) {
     const newUserSession = {...userSession, ...req.user};
     const dbUser = await userModel.findOne({_id: newUserSession._id.toString()});
+    if (dbUser) {
     await dbUser.addFields(req.user);
     req.session.user = newUserSession;
     console.log(userSession);
+    } else {
+      // Data is no longer there.
+      console.log('Usuario no existe, borrando sesion.');
+      req.session.destroy();
+    }
   }
 
   return next();
