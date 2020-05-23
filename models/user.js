@@ -27,6 +27,17 @@ userSchema.static('createUser', async function(user, password, role) {
   });
 })
 
+userSchema.static('getModerators', async function() {
+  const moderators = await this.find({
+    $or: [
+      {"role": "Moderator"},
+      {"role": "Admin"}
+    ]
+  });
+  console.log('Moderadores', moderators);
+  return moderators;
+});
+
 userSchema.method('login', async function(password) {
   return bcrypt.compare(password, this.password);
 });

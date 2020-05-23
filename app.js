@@ -14,6 +14,7 @@ const mainRoutes = require('./routes/base');
 const editRoutes = require('./routes/edit');
 const authRoutes = require('./routes/auth');
 const votesRoutes = require('./routes/votes');
+const adminRoutes = require('./routes/admin');
 
 
 app.use(forceHTTPS);
@@ -27,6 +28,7 @@ app.use(mainRoutes);
 app.use(editRoutes);
 app.use(authRoutes);
 app.use('/votes', votesRoutes);
+app.use('/admin', adminRoutes);
 
 // 404 page.
 app.use((req, res, next)=> {
