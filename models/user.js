@@ -10,7 +10,11 @@ const userSchema = new Schema({
   role: {
     required: true,
     type: String
-  }
+  },
+  seen: [],
+  moderator: Boolean,
+  voted: [],
+  lastSeen: String
 });
 
 userSchema.static('createUser', async function(user, password, role) {
@@ -18,12 +22,21 @@ userSchema.static('createUser', async function(user, password, role) {
   return this.create({
     username: user,
     password: hashedPassword,
-    role: role
+    role: role,
+    seen: [],
+    moderator: Boolean,
+    voted: Boolean,
+    lastSeen: String
   });
 })
 
-userSchema.method('login', async function(user, password) {
+userSchema.method('login', async function(password) {
   return bcrypt.compare(password, this.password);
+});
+
+userSchema.method('addFields', async function(object) {
+  Object.assign(this, object);
+  return await this.save();
 });
 
 const userModel = mongoose.model('User', userSchema);

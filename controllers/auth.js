@@ -45,7 +45,7 @@ module.exports.postLogin = async (req, res, next) => {
   const logedUser = await userModel.findOne({username: user})
   req.session.user = logedUser.toObject();
   if (logedUser) {
-    const isLoggedin = await logedUser.login(user, password);
+    const isLoggedin = await logedUser.login(password);
     return res.json({ 'message': `Logged in is set to ${isLoggedin}` })
   } else {
     return res.json({ 'message': 'User does not exist'});

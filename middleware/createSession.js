@@ -1,6 +1,7 @@
 const Router = require('express').Router();
 const settings = require('../util/settings');
 const userUtilities = require('../util/user');
+const userModel = require('../models/user');
 const jwt = require('jsonwebtoken');
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
@@ -40,6 +41,8 @@ Router.use(async (req, res, next) => {
 
   if (userSession) {
     const newUserSession = {...userSession, ...req.user};
+    const dbUser = await userModel.findOne({_id: newUserSession._id.toString()});
+    await dbUser.addFields(req.user);
     req.session.user = newUserSession;
     console.log(userSession);
   }
