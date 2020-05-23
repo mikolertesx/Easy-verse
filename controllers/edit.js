@@ -2,7 +2,7 @@
 const verses = require('../models/verse');
 
 module.exports.getAdd = (async (req, res, next) => {
-  return res.render('base/add');
+  return res.render('main/add');
 });
 
 module.exports.postAdd = (async (req, res, next) => {

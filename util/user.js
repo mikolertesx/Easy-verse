@@ -5,6 +5,7 @@ const verses = require('../models/verse');
 module.exports.createUser = () => {
   return user = {
     'seen': [],
+    'lastseen': '',
     'voted': []
   };
 };

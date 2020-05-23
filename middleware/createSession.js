@@ -11,6 +11,18 @@ const store = new MongoStore({
   collection: settings.SESSION
 });
 
+const restoreFromSession = (req, res, user) => {
+  const sessionUser = req.session.user;
+  const newUser = {...user};
+  if (sessionUser) {
+    console.log('RESTORED');
+    newUser.seen = sessionUser.seen;
+    newUser.lastSeen = sessionUser.lastSeen;
+    newUser.voted = sessionUser.voted;
+  };
+  return newUser;
+}
+
 Router.use(session({
   secret: settings.SECRET,
   cookie: {
@@ -32,6 +44,7 @@ Router.use(async (req, res, next) => {
   let user = req.cookies['user'];
   if (!user || user === 'undefined') {
     user = userUtilities.createUser();
+    user = restoreFromSession(req, res, user);
     const signedToken = jwt.sign(user, settings.SECRET);
     res.cookie('user', signedToken);
     req.user = user;
