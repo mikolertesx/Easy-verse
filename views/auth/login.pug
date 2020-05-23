@@ -1,0 +1,10 @@
+extends ../utils/base.pug
+
+block content
+  form(action=link method="POST")
+    input(type="hidden", name="_csrf" value=csrfToken)
+    label(for="user") Usuario
+    input(type="text" name="user")
+    label(for="password") Contraseña
+    input(type="password" name="password")
+    button(type="submit") Enviar

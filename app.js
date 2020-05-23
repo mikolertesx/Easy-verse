@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const settings = require('./util/settings');
 const db = require('./util/database');
 const app = express();
@@ -11,15 +12,20 @@ const createSession = require('./middleware/createSession');
 
 const mainRoutes = require('./routes/base');
 const editRoutes = require('./routes/edit');
+const authRoutes = require('./routes/auth');
 const votesRoutes = require('./routes/votes');
+
 
 app.use(forceHTTPS);
 app.use(browserify);
 app.use(express.static('public'))
+app.use(cookieParser());
+
 app.use(createSession);
 
 app.use(mainRoutes);
 app.use(editRoutes);
+app.use(authRoutes);
 app.use('/votes', votesRoutes);
 
 // 404 page.
