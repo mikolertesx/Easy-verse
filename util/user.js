@@ -15,7 +15,6 @@ module.exports.saveUser = (req, res) => {
   if (!user) {
     throw new Error('User is not in the request object.');
   }
-  console.log(user);
   const encryptedUser = jwt.sign(user, settings.SECRET);
   res.cookie('user', encryptedUser);
 }

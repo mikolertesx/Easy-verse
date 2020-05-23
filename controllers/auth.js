@@ -28,6 +28,10 @@ module.exports.postRegister = async (req, res, next) => {
 
   const newUser = await userModel.createUser(username, password, role);
 
+  if (newUser) {
+    req.session.user = newUser.toObject();
+  }
+
   return res.json({
     'id': newUser._id.toString()
   });
@@ -39,7 +43,7 @@ module.exports.postLogin = async (req, res, next) => {
   const password = req.body.password;
 
   const logedUser = await userModel.findOne({username: user})
-
+  req.session.user = logedUser.toObject();
   if (logedUser) {
     const isLoggedin = await logedUser.login(user, password);
     return res.json({ 'message': `Logged in is set to ${isLoggedin}` })
