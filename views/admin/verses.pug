@@ -1,12 +1,23 @@
 extends adminbase.pug
 block css
   link(rel="stylesheet", href="/css/admin/verses.css")
+block js
+  script(src="/js/admin/verse.js" defer=true)
 block content
   h2 Versos
   for verse in verses
     .verse
+      h3 Autor
       p #{verse.author}
+      h3 Contenido
+      p #{verse.parsedContent}
       p #{verse.approved === true ? "Aprobado": "No aprobado"}
+      input.id(type="hidden", name="_id", value=verse._id.toString())
+      .options
+        if (verse.approved !== true)
+          button.approve Aprobar
+        button.delete Eliminar
+        button(disabled=true) Editar
       hr
   
   div.nav

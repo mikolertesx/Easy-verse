@@ -10,6 +10,7 @@ module.exports.connectDatabase = async () => {
     return await mongoose.connect(settings.DATABASE_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
       serverSelectionTimeoutMS: settings.DATABASE_TIMEOUT
     });
   } 

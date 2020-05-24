@@ -59,14 +59,17 @@ verseSchema.static('getVerseList', async function (page, perPage) {
 
 verseSchema.static('countReads', async function () {
   // Match all the reads, and increase the reads.
+  try {
   const totalReads = await this.aggregate([{
     $group: {
       _id: null,
       sum: { $sum: "$seen" }
     }
   }]);
-
   return totalReads[0].sum;
+  } catch {
+    return 0;
+  }
 });
 
 const verseModel = mongoose.model('Verse', verseSchema);
