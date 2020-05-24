@@ -25,6 +25,9 @@ module.exports.decryptUser = (user) => {
 }
 
 module.exports.updateWatchedList = (user, filteredVerse) => {
+  if (!filteredVerse) {
+    return user;
+  }
   const verseId = filteredVerse._id.toString();
   let newSeen;
   if (!user) {
@@ -40,7 +43,7 @@ module.exports.updateWatchedList = (user, filteredVerse) => {
 }
 
 module.exports.isIn = (user, filteredVerse) => {
-  if (!user) { return false; }
+  if (!user || !filteredVerse) { return false; }
   // const decodedUser = this.decryptUser(user);
   const verse = filteredVerse._id.toString();
   return user.seen.includes(verse);

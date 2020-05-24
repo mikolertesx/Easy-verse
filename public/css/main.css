@@ -1,9 +1,11 @@
 :root {
+  /* TODO Finish adding new colors to the style */
   --pureblack: #000000;
   --darkbackground: #222222;
   --lightbackground: #F4F4F8;
   --maintext: #F4F4F8;
   --accent: #102542;
+  --borderDefault: gray;
 }
 
 * {

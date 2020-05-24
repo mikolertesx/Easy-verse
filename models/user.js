@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
-//TODO Add hashing.
 const userSchema = new Schema({
   username: String,
   password: String,
@@ -34,7 +33,6 @@ userSchema.static('getModerators', async function() {
       {"role": "Admin"}
     ]
   });
-  console.log('Moderadores', moderators);
   return moderators;
 });
 

@@ -1,13 +1,20 @@
 <!DOCTYPE html>
+// TODO Finish a good layout for adminbase
 html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Administrador
     link(rel="stylesheet", href="/css/admin/main.css")
+    block css
+    block js
   body
     main
-      .user-data
+      // TODO Style adminbase.
+      .user-data.admincontrol
         p Nombre del usuario: #{user.username}
         p Rol del usuario: #{user.role}
+      .meta-informacion.admincontrol
+        p Cantidad de reflexiones: #{admin.verseLength}
+        p Lecturas totales: #{admin.totalReads}
       block content

@@ -5,8 +5,9 @@ block js
   script(src="js/main/index.js" defer)
 block content
   if (verse === undefined)
-    h1 Entra más tarde o agrega tu el primer versiculo.
-    a(href="/add") Agrega el primer versiculo.
+    div.reflection
+      h1 Entra más tarde o agrega tu el primer versiculo.
+      a.contribute.in-mobile(href="/add", style="margin: 20px 0;") Agrega el primer versiculo.
   else
     div.header
       div.info

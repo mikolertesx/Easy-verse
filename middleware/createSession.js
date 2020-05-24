@@ -34,15 +34,12 @@ Router.use(session({
 }));
 
 Router.use(async (req, res, next) => {
+  // TODO Refactor code.
   const userSession = req.session.user;
-  if (userSession) {
-    console.log('Usuario existe');
-  } else {
-    console.log('Usuario no existe.');
-  }
-
   let user = req.cookies['user'];
+
   if (!user || user === 'undefined') {
+    // If user doesn't exist create one.
     user = userUtilities.createUser();
     user = restoreFromSession(req, res, user);
     const signedToken = jwt.sign(user, settings.SECRET);
@@ -58,12 +55,11 @@ Router.use(async (req, res, next) => {
     const newUserSession = {...userSession, ...req.user};
     const dbUser = await userModel.findOne({_id: newUserSession._id.toString()});
     if (dbUser) {
-    await dbUser.addFields(req.user);
-    req.session.user = newUserSession;
-    res.locals.user = newUserSession;
-    console.log(userSession);
+      await dbUser.addFields(req.user);
+      req.session.user = newUserSession;
+      res.locals.user = newUserSession;
     } else {
-      // Data is no longer there.
+      // User data is no longer valid.
       console.log('Usuario no existe, borrando sesion.');
       req.session.destroy();
     }

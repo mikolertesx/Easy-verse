@@ -43,6 +43,7 @@ div.reflection p:last-of-type {
 }
 
 .contribute {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

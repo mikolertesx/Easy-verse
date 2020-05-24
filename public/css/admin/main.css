@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Open Sans";
+}
+
+main {
+  padding: 12px;
+}
+
+.admincontrol {
+  border: 1px solid gray;
+  padding: 12px;
+}
+
+.admincontrol p {
+  margin: 10px;
+}

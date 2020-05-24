@@ -9,7 +9,8 @@ const verseSchema = new Schema({
     likes: Number,
     dislikes: Number
   },
-  seen: 0
+  seen: 0,
+  approved: Boolean
 });
 
 verseSchema.static('findRandom', async function () {
@@ -31,12 +32,24 @@ verseSchema.static('fromStringToIds', async function (list) {
 verseSchema.static('findNewVerse', async function (list) {
   const parsedList = await this.fromStringToIds(list);
   const newUnparsedVerse = await this.aggregate([
-    { $match: { _id: { $nin: parsedList } } },
+    { $match: { _id: { $nin: parsedList }, approved: true} },
     { $sample: { size: 1 } }
   ]);
   const parsedVerse = newUnparsedVerse[0];
 
   return parsedVerse;
+});
+
+verseSchema.static('countReads', async function () {
+  // Match all the reads, and increase the reads.
+  const totalReads = await this.aggregate([{
+      $group: {
+        _id: null,
+        sum: { $sum: "$seen" }
+      }
+    }]);
+
+  return totalReads[0].sum;
 });
 
 const verseModel = mongoose.model('Verse', verseSchema);

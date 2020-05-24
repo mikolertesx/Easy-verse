@@ -23,6 +23,11 @@ module.exports.getIndex = (async (req, res, next) => {
   let randomVerse;
 
   randomVerse = await findNewVerse(user);
+  if (!randomVerse) {
+    return res.render('main/index', {
+      verse: undefined
+    });
+  }
   req.user = userUtilities.updateWatchedList(user, randomVerse);
   
   if (!userUtilities.isIn(user, randomVerse)){

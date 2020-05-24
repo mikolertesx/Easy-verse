@@ -1,0 +1,19 @@
+extends adminbase.pug
+
+block content
+  //- Add CRUD operations here.
+  if (user.role === 'Admin')
+    section#administrador
+      h2 Registrar y eliminar moderadores
+      for moderator in moderators
+        if (moderator.username !== user.username)
+          div.moderator
+            p.username #{moderator.username}
+            p.role #{moderator.role}
+        else
+          div.moderator
+            p.username YO (#{moderator.username})
+  section#versos
+    h2 Versos.
+    a(href="/admin/verses") Gestionar versos
+  
