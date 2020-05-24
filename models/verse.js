@@ -35,7 +35,7 @@ verseSchema.static('fromStringToIds', async function (list) {
 verseSchema.static('findNewVerse', async function (list) {
   const parsedList = await this.fromStringToIds(list);
   const newUnparsedVerse = await this.aggregate([
-    { $match: { _id: { $nin: parsedList }, approved: true} },
+    { $match: { _id: { $nin: parsedList }, approved: true } },
     { $sample: { size: 1 } }
   ]);
   const parsedVerse = newUnparsedVerse[0];
@@ -43,14 +43,28 @@ verseSchema.static('findNewVerse', async function (list) {
   return parsedVerse;
 });
 
+verseSchema.static('getVerseList', async function (page, perPage) {
+  const skip = perPage * (page - 1);
+  const limit = perPage;
+
+  // Sorting by a field that is equal isn't deterministic,
+  // Therefore you need to add an id next to it.
+  const verseList = await this.aggregate([
+    { $sort: { "approved": 1, _id: 1}},
+    { $skip: skip },
+    { $limit: limit }
+  ]);
+  return verseList;
+})
+
 verseSchema.static('countReads', async function () {
   // Match all the reads, and increase the reads.
   const totalReads = await this.aggregate([{
-      $group: {
-        _id: null,
-        sum: { $sum: "$seen" }
-      }
-    }]);
+    $group: {
+      _id: null,
+      sum: { $sum: "$seen" }
+    }
+  }]);
 
   return totalReads[0].sum;
 });

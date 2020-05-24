@@ -7,4 +7,6 @@ Router.use('/', controller.addData);
 // /admin/index ->
 Router.get('/index', controller.getIndex);
 
+Router.get('/verse', controller.getVerses);
+
 module.exports = Router;
