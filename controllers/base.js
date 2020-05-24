@@ -28,14 +28,13 @@ module.exports.getIndex = (async (req, res, next) => {
       verse: undefined
     });
   }
-  req.user = userUtilities.updateWatchedList(user, randomVerse);
-  
-  if (!userUtilities.isIn(user, randomVerse)){
+  if (!userUtilities.isIn(req.user, randomVerse)){
     await verses.updateOne({ _id: randomVerse._id }, { $inc: { 'seen': 1 } });
   }
 
+  req.user = userUtilities.updateWatchedList(user, randomVerse);
   userUtilities.saveUser(req, res);
-
+  console.log(req.user)
   const splitMessage = randomVerse.content.split('\n');
   randomVerse.parsedMessage = splitMessage;
   return res.render('main/index', {

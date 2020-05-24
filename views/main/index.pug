@@ -17,7 +17,12 @@ block content
         p
           span.not-mobile escrita por
           |  #{verse.author}
-      p.seen Esta página ha sido vista #{verse.seen} veces.
+      if (verse.seen === 0) 
+        p.seen Eres la primera persona en ver esta reflexión.
+      else if (verse.seen === 1)
+        p.seen Esta reflexión ha sido vista 1 vez.
+      else
+        p.seen Esta reflexión ha sido vista #{verse.seen} veces.
 
     div.reflection
       for paragraph in verse.parsedMessage
@@ -33,7 +38,7 @@ block content
         p#negativeVotes(style="color: red;") Votos negativos.
 
     div.vote
-      p Danos tu opinion.
+      p Danos tu opinión.
       div.votes
         img#voteup(src="img/votes/like.png", alt="")
         img#votedown(src="img/votes/dislike.png", alt="")
