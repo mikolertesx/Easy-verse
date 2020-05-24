@@ -1,16 +1,16 @@
 const Router = require('express').Router();
 const bodyParser = require('body-parser');
+const auth = require('../middleware/auth');
 const controller = require('../controllers/admin');
-
 const jsonParser = bodyParser.json();
 
 // Add metadata, so that every route has it.
-Router.use('/', controller.addData);
+Router.use('/', auth.isAuth, controller.addData);
 
 // /admin/index ->
-Router.get('/index', controller.getIndex);
+Router.get('/index', auth.isAuth, controller.getIndex);
 
-Router.get('/verses', controller.getVerses);
+Router.get('/verses', auth.isAuth, controller.getVerses);
 
 // API ENDPOINTS.
 Router.post('/postverse', jsonParser, controller.postverse);

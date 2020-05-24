@@ -19,8 +19,6 @@ module.exports.getLogin = async (req, res, next) => {
 };
 
 module.exports.postRegister = async (req, res, next) => {
-  console.log(req.body);
-
   const username = req.body.username;
   const password = req.body.password;
   const length = await userModel.countDocuments();
@@ -36,13 +34,12 @@ module.exports.postRegister = async (req, res, next) => {
 }
 
 module.exports.postLogin = async (req, res, next) => {
-  console.log(req.body);
   const user = req.body.username;
   const password = req.body.password;
   const logedUser = await userModel.findOne({ username: user })
-  req.session.user = logedUser.toObject();
-  req.user.seen = [...req.user.seen, ...req.session.user.seen];
   if (logedUser) {
+    req.session.user = logedUser.toObject();
+    req.user.seen = [...req.user.seen, ...req.session.user.seen];
     const isLoggedin = await logedUser.login(password);
     if (isLoggedin) {
       return res.redirect('/admin');
