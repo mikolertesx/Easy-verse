@@ -19,7 +19,7 @@ module.exports.getIndex = async (req, res, next) => {
 
 module.exports.getVerses = async(req, res, next) => {
   const page = +req.query.page || 1;
-  const perPage = 2;
+  const perPage = 10;
   const getVerses = await verseModel.getVerseList(page, perPage);
   const totalPages = Math.ceil(await verseModel.countDocuments() / perPage);
   return res.render('admin/verses', {
