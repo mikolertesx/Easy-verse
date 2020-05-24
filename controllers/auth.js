@@ -32,22 +32,22 @@ module.exports.postRegister = async (req, res, next) => {
     req.session.user = newUser.toObject();
   }
 
-  return res.json({
-    'id': newUser._id.toString()
-  });
+  return res.redirect('/admin');
 }
 
 module.exports.postLogin = async (req, res, next) => {
   console.log(req.body);
   const user = req.body.username;
   const password = req.body.password;
-  const logedUser = await userModel.findOne({username: user})
+  const logedUser = await userModel.findOne({ username: user })
   req.session.user = logedUser.toObject();
   req.user.seen = [...req.user.seen, ...req.session.user.seen];
   if (logedUser) {
     const isLoggedin = await logedUser.login(password);
-    return res.json({ 'message': `Logged in is set to ${isLoggedin}` })
-  } else {
-    return res.json({ 'message': 'User does not exist'});
+    if (isLoggedin) {
+      return res.redirect('/admin');
+    }
   }
+
+  return res.redirect('/');
 };
