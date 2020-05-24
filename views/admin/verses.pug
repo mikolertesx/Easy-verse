@@ -10,7 +10,8 @@ block content
       h3 Autor
       p #{verse.author}
       h3 Contenido
-      p #{verse.parsedContent}
+      for paragraph in verse.parsedContent
+        p #{paragraph}
       p #{verse.approved === true ? "Aprobado": "No aprobado"}
       input.id(type="hidden", name="_id", value=verse._id.toString())
       .options
