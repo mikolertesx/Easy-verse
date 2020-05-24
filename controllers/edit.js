@@ -19,8 +19,8 @@ module.exports.postAdd = (async (req, res, next) => {
       likes: 0,
       dislikes: 0
     },
-    seen: 0
+    seen: 0,
+    approved: false
   });
-  console.log(req.body);
   return res.redirect('/');
 });

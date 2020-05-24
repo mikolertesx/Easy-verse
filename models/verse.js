@@ -10,7 +10,10 @@ const verseSchema = new Schema({
     dislikes: Number
   },
   seen: 0,
-  approved: Boolean
+  approved: {
+    type: Boolean,
+    required: true
+  }
 });
 
 verseSchema.static('findRandom', async function () {
