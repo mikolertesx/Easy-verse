@@ -8,6 +8,8 @@ block content
     div.reflection
       h1 Entra más tarde o agrega tu el primer versiculo.
       a.contribute.in-mobile(href="/add", style="margin: 20px 0;") Agrega el primer versiculo.
+      if (user.role !== undefined && (user.role === 'Admin' || user.role === 'Moderator'))
+        a.contribute.in-mobile(href="/admin/index") Administrar
   else
     div.header
       div.info
