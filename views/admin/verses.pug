@@ -22,11 +22,11 @@ block content
   
   div.nav
     if (prevPage >= 1 )
-      a(href=`/admin/verse?page=${prevPage}`) #{prevPage}
+      a(href=`/admin/verses?page=${prevPage}`) #{prevPage}
     
     p(style="cursor:not-allowed;") #{currentPage}
 
     if (currentPage < totalPages)
-      a(href=`/admin/verse?page=${nextPage}`) #{nextPage}
+      a(href=`/admin/verses?page=${nextPage}`) #{nextPage}
     else
       p(style="cursor:not-allowed;") #{nextPage}
